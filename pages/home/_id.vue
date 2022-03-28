@@ -46,6 +46,7 @@
         $dataApi.getUserByHomeId(params.id)
       ])
 
+      // enough to display one error for now
       const badResponse = responses.find(res => !res.ok)
       if (!!badResponse)
         return error({
