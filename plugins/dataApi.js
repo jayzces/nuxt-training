@@ -7,12 +7,34 @@ export default function (context, inject) {
     'X-Algolia-Application-Id': appId
   }
 
-  inject('dataApi', { getHome, getReviewsByHomeId, getUserByHomeId })
+  inject('dataApi', {
+    getHome,
+    getHomeByLocation,
+    getReviewsByHomeId,
+    getUserByHomeId,
+  })
 
   async function getHome(homeId) {
     try {
       return unWrap(await fetch(`${baseUrl}/homes/${homeId}`, { headers }))
     } catch(error) {
+      return getErrorResponse(error)
+    }
+  }
+
+  async function getHomeByLocation(lat, lng, radiusInMeters = 1500) {
+    try {
+      return unWrap(await fetch(`${baseUrl}/homes/query`, {
+        headers,
+        method: 'POST',
+        body: JSON.stringify({
+          aroundLatLng: `${lat}, ${lng}`,
+          aroundRadius: radiusInMeters,
+          attributesToHighlight: [],
+          hitsPerPage: 10
+        })
+      }))
+    } catch (error) {
       return getErrorResponse(error)
     }
   }
