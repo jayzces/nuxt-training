@@ -1,5 +1,14 @@
 export default {
+  build: {
+    extractCSS: true,
+    loaders: {
+      limit: 0,
+    }
+  },
   components: true,
+  css: [
+    '~/assets/sass/app.scss'
+  ],
   head: {
     titleTemplate: 'Mastering Nuxt: %s',
     htmlAttrs: {
@@ -26,5 +35,5 @@ export default {
   ],
   router: {
     prefetchLinks: false
-  }
+  },
 }

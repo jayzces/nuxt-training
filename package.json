@@ -9,6 +9,8 @@
     "start": "nuxt start"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^5.0.2"
+    "@nuxtjs/tailwindcss": "^5.0.2",
+    "sass": "^1.49.9",
+    "sass-loader": "^10.1.1"
   }
 }
