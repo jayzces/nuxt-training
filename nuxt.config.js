@@ -14,11 +14,17 @@ export default {
       }
     ]
   },
-  router: {
-    prefetchLinks: false
-  },
+  buildModules: [
+    '@nuxtjs/tailwindcss'
+  ],
+  modules: [
+    // sequential
+  ],
   plugins: [
     '~/plugins/maps.client',
     '~/plugins/dataApi'
-  ]
+  ],
+  router: {
+    prefetchLinks: false
+  }
 }
