@@ -1,4 +1,6 @@
 export default function (context, inject) {
+  const apiKey = context.env.NUXT_ENV_GOOGLE_API_KEY
+
   let isLoaded = false
   let waiting = []
 
@@ -7,7 +9,7 @@ export default function (context, inject) {
 
   function addScript() {
     const script = document.createElement('script')
-    script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDkrxYbUA0FjGiczCOnK1GlW1AeYoMsTb4&libraries=places&callback=initGoogleMaps'
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initGoogleMaps`
     script.async = true
     window.initGoogleMaps = initGoogleMaps
     document.head.appendChild(script)

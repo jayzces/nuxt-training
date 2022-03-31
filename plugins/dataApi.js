@@ -1,6 +1,6 @@
 export default function (context, inject) {
-  const appId = 'BNSFXF8L3U'
-  const apiKey = '07de33f84aa102bfdbe2ee98c3560dfc'
+  const appId = context.env.NUXT_ENV_ALGOLIA_ID
+  const apiKey = context.env.NUXT_ENV_ALGOLIA_API_KEY
   const baseUrl = `https://${appId}-dsn.algolia.net/1/indexes`
   const headers = {
     'X-Algolia-API-Key': apiKey,
