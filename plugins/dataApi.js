@@ -1,6 +1,8 @@
-export default function (context, inject) {
-  const appId = context.env.NUXT_ENV_ALGOLIA_ID
-  const apiKey = context.env.NUXT_ENV_ALGOLIA_API_KEY
+import { getErrorResponse, unWrap } from '~/utils/fetchUtils'
+
+export default function ({ $config }, inject) {
+  const appId = $config.algolia.appId
+  const apiKey = $config.algolia.apiKey
   const baseUrl = `https://${appId}-dsn.algolia.net/1/indexes`
   const headers = {
     'X-Algolia-API-Key': apiKey,
@@ -67,21 +69,6 @@ export default function (context, inject) {
       }))
     } catch (error) {
       return getErrorResponse(error)
-    }
-  }
-
-  async function unWrap(response) {
-    const json = await response.json()
-    const { ok, status, statusText } = response
-    return { json, ok, status, statusText }
-  }
-
-  function getErrorResponse(error) {
-    return {
-      ok: false,
-      status: 500,
-      statusText: error.message,
-      json: {}
     }
   }
 }

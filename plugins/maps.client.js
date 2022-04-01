@@ -1,8 +1,10 @@
-export default function (context, inject) {
-  const apiKey = context.env.NUXT_ENV_GOOGLE_API_KEY
+export default function ({ $config }, inject) {
+  const apiKey = $config.maps.apiKey
 
   let isLoaded = false
   let waiting = []
+
+  window.initGoogleMaps = init
 
   addScript()
   inject('maps', { showMap, makeAutoComplete })
@@ -11,11 +13,10 @@ export default function (context, inject) {
     const script = document.createElement('script')
     script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initGoogleMaps`
     script.async = true
-    window.initGoogleMaps = initGoogleMaps
     document.head.appendChild(script)
   }
 
-  function initGoogleMaps() {
+  function init() {
     isLoaded = true
     waiting.forEach(item => {
       if (typeof item.fn === 'function') item.fn(...item.arguments)

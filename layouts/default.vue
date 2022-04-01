@@ -18,12 +18,15 @@
       </div>
 
       <div class="app-user-menu">
-        <img src="/images/icons/house.svg" alt="null" />
-        <div class="name">Host</div>
-        <img src="/images/user.jpg" class="avatar" alt="User's Image" />
+        <template v-if="isLoggedIn">
+          <img src="/images/icons/house.svg" alt="null" />
+          <div class="name">Host</div>
+          <img :src="user.profileUrl" :alt="user.fullName" class="avatar" />
+        </template>
+
+        <div v-show="!isLoggedIn" id="googleButton" class="ml-8"></div>
       </div>
     </header>
-
     <nuxt />
   </div>
 </template>
@@ -43,6 +46,14 @@
             label: this.$refs.citySearch.value
           }
         })
+      }
+    },
+    computed: {
+      isLoggedIn() {
+        return this.$store.state.auth.isLoggedIn
+      },
+      user() {
+        return this.$store.state.auth.user
       }
     },
     mounted() {
