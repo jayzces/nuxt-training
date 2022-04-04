@@ -29,7 +29,7 @@ export default {
   modules: [
     // sequential
     '~/modules/auth',
-    '~/modules/algolia'
+    '~/modules/algolia' // server middleware
   ],
   plugins: [
     '~/plugins/maps.client',

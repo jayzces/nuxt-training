@@ -1,6 +1,7 @@
 {
   "name": "mastering-nuxt",
   "dependencies": {
+    "body-parser": "^1.20.0",
     "cookie": "^0.4.2",
     "google-auth-library": "^7.14.1",
     "js-cookie": "^3.0.1",
