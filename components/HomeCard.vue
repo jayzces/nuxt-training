@@ -1,6 +1,9 @@
 <template>
   <div style="float:left;margin:10px">
-      <img :src="home.images[0]" style="width:200px"/><br />
+      <nuxt-img :src="home.images[0]"
+        width="200"
+        height="150"
+        provider="cloudinary" /><br />
       {{ home.title }}<br />
       {{ home.location.address }}, {{ home.location.city }}, {{ home.location.state }}, {{ home.location.country }}<br />
       {{ home.guests }} guests<br />

@@ -11,5 +11,22 @@ ALGOLIA_WRITE_API_KEY=0
 GOOGLE_API_KEY=0
 GOOGLE_CLIENT_ID=0
 GOOGLE_CLIENT_SECRET=0
+CLOUDINARY_API_KEY=0
+CLOUDINARY_API_SECRET=0
+CLOUDINARY_CLOUD_NAME=0
+```
 
+# Scripts
+```
+# install project dependencies
+yarn install
+
+# Local Server
+yarn dev
+
+# Build Files
+yarn build
+
+# Serve Production Build
+yarn start
 ```

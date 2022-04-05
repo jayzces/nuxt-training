@@ -34,15 +34,15 @@ export default function () {
     const idToken = cookie.parse(req.headers.cookie)[authConfig.cookieName]
     if (!idToken) return rejectHit(res)
 
-    console.log({
-      url: req.originalUrl,
-      idToken
-    })
+    // console.log({
+    //   url: req.originalUrl,
+    //   idToken
+    // })
 
     const ticket = await getUser(idToken)
     if (!ticket) return rejectHit(res)
 
-    console.log({ ticket })
+    // console.log({ ticket })
 
     req.identity = {
       id: ticket.sub,

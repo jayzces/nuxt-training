@@ -7,6 +7,11 @@ export default algoliaConfig => {
   const baseUrl = `https://${algoliaConfig.appId}-dsn.algolia.net/1/indexes`
 
   return {
+    assignHome: async function(identity, homeId) {
+      const payload = (await this.getById(identity.id)).json
+      payload.homeId.push(homeId)
+      this.create(identity, payload)
+    },
     create: async (identity, payload) => {
       try {
         return unWrap(await fetch(`${baseUrl}/users/${identity.id}`, {
@@ -26,6 +31,12 @@ export default algoliaConfig => {
       } catch (error) {
         return getErrorResponse(error)
       }
+    },
+    removeHome: async function(identity, homeId) {
+      const payload = (await this.getById(identity.id)).json
+      const homes = payload.homeId.filter(id => id !== homeId)
+      payload.homeId = homes
+      this.create(identity, payload)
     }
   }
 

@@ -11,7 +11,8 @@ export default function ({ $config }, inject) {
 
   inject('dataApi', {
     getHome,
-    getHomeByLocation,
+    getHomes,
+    getHomesByLocation,
     getReviewsByHomeId,
     getUserByHomeId,
   })
@@ -24,7 +25,22 @@ export default function ({ $config }, inject) {
     }
   }
 
-  async function getHomeByLocation(lat, lng, radiusInMeters = 1500) {
+  async function getHomes() {
+    try {
+      return unWrap(await fetch(`${baseUrl}/homes/query`, {
+        headers,
+        method: 'POST',
+        body: JSON.stringify({
+          attributesToHighlight: [],
+          hitsPerPage: 3
+        })
+      }))
+    } catch (error) {
+      return getErrorResponse(error)
+    }
+  }
+
+  async function getHomesByLocation(lat, lng, radiusInMeters = 1500 * 15) {
     try {
       return unWrap(await fetch(`${baseUrl}/homes/query`, {
         headers,

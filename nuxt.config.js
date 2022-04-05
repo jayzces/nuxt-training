@@ -24,17 +24,33 @@ export default {
     ]
   },
   buildModules: [
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@nuxt/image'
   ],
   modules: [
-    // sequential
+    // is sequential
+
+    // server middlewares
     '~/modules/auth',
-    '~/modules/algolia' // server middleware
+    '~/modules/algolia',
+    '~/modules/cloudinary',
+    '@nuxtjs/cloudinary'
   ],
+  cloudinary: {
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+    apiKey: '',
+    appId: ''
+  },
+  image: {
+    cloudinary: {
+      baseURL: `https://res.cloudinary.com/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload/`
+    }
+  },
   plugins: [
     '~/plugins/maps.client',
     '~/plugins/dataApi',
-    '~/plugins/auth.client'
+    '~/plugins/auth.client',
+    '~/plugins/vCalendar.client'
   ],
   publicRuntimeConfig: {
     algolia: {
@@ -47,6 +63,9 @@ export default {
     },
     maps: {
       apiKey: process.env.GOOGLE_API_KEY
+    },
+    cloudinary: {
+      apiKey: process.env.CLOUDINARY_API_KEY,
     }
   },
   // for server-side rendering
@@ -56,6 +75,9 @@ export default {
       appId: process.env.ALGOLIA_ID,
       apiKey: process.env.ALGOLIA_WRITE_API_KEY
     },
+    cloudinary: {
+      apiSecret: process.env.CLOUDINARY_API_SECRET
+    }
   },
   router: {
     prefetchLinks: false

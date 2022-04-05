@@ -57,7 +57,7 @@
       }
     },
     mounted() {
-      this.$maps.makeAutoComplete(this.$refs.citySearch)
+      this.$maps.makeAutoComplete(this.$refs.citySearch, ['(cities)'])
     }
   }
 </script>
