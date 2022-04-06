@@ -47,8 +47,8 @@
       this.updateMap()
     },
     async beforeRouteUpdate(to, from, next) {
-      const data = await this.$dataApi
-        .getHomesByLocation(to.query.lat, to.query.lng)
+      const data = await this.$dataApi.getHomesByLocation(
+        to.query.lat, to.query.lng, to.query.start, to.query.end)
       this.homes = data.json.hits
       this.label = to.query.label
       this.lat = to.query.lat
@@ -57,7 +57,8 @@
       next()
     },
     async asyncData({ query, $dataApi }) {
-      const data = await $dataApi.getHomesByLocation(query.lat, query.lng)
+      const data = await $dataApi
+        .getHomesByLocation(query.lat, query.lng, query.start, query.end)
       return {
         homes: data.json.hits,
         // no ...query to control url queryParams and remove any extra input
