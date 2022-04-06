@@ -34,7 +34,8 @@ export default {
     '~/modules/auth',
     '~/modules/algolia',
     '~/modules/cloudinary',
-    '@nuxtjs/cloudinary'
+    '@nuxtjs/cloudinary',
+    '~/modules/stripe'
   ],
   cloudinary: {
     cloudName: process.env.CLOUDINARY_CLOUD_NAME,
@@ -50,7 +51,8 @@ export default {
     '~/plugins/maps.client',
     '~/plugins/dataApi',
     '~/plugins/auth.client',
-    '~/plugins/vCalendar.client'
+    '~/plugins/vCalendar.client',
+    '~/plugins/stripe.client'
   ],
   publicRuntimeConfig: {
     algolia: {
@@ -66,6 +68,9 @@ export default {
     },
     cloudinary: {
       apiKey: process.env.CLOUDINARY_API_KEY,
+    },
+    stripe: {
+      key: process.env.STRIPE_PUBLIC_KEY
     }
   },
   // for server-side rendering
@@ -77,6 +82,9 @@ export default {
     },
     cloudinary: {
       apiSecret: process.env.CLOUDINARY_API_SECRET
+    },
+    stripe: {
+      secretKey: process.env.STRIPE_SECRET_KEY
     }
   },
   router: {

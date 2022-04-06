@@ -1,5 +1,5 @@
 import { getErrorResponse, unWrap } from '../../../utils/fetchUtils'
-import { getHeaders } from '../helpers'
+import { getHeaders } from '../../helpers'
 import fetch from 'node-fetch'
 
 export default algoliaConfig => {
@@ -36,6 +36,15 @@ export default algoliaConfig => {
         return unWrap(await fetch(`${baseUrl}/homes/${homeId}`, {
           headers,
           method: 'DELETE'
+        }))
+      } catch (error) {
+        return getErrorResponse(error)
+      }
+    },
+    get: async homeId => {
+      try {
+        return unWrap(await fetch(`${baseUrl}/homes/${homeId}`, {
+          headers,
         }))
       } catch (error) {
         return getErrorResponse(error)

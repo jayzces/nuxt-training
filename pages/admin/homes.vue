@@ -123,12 +123,7 @@
     },
     methods: {
       async deleteHome(homeId) {
-        console.log({ homeId })
-
-        await fetch(`/api/homes/${homeId}`, {
-          method: 'DELETE'
-        })
-
+        await fetch(`/api/homes/${homeId}`, { method: 'DELETE' })
         const index = this.homesList.findIndex(obj => obj.objectID === homeId)
         this.homesList.splice(index, 1)
       },

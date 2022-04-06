@@ -1,5 +1,5 @@
 import { getErrorResponse, unWrap } from '../../../utils/fetchUtils'
-import { getHeaders } from '../helpers'
+import { getHeaders } from '../../helpers'
 import fetch from 'node-fetch'
 
 export default algoliaConfig => {
