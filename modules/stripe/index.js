@@ -12,6 +12,13 @@ export default function () {
     app.use('/api/stripe/create-session', createSession)
   })
 
+  this.nuxt.hook('render:setupMiddleware', app => {
+    app.use('/hooks/stripe', (req, res, next) => {
+      const meta = req.body.data.object.metadata
+      res.end(`${meta.identityId} booked ${meta.homeId}`)
+    })
+  })
+
   async function createSession(req, res) {
     const body = req.body
     if (!body || !body.homeId || !body.start || !body.end
@@ -39,7 +46,13 @@ export default function () {
             }
           },
         }
-      ]
+      ],
+      metadata: {
+        identityId: req.identity.id,
+        homeId: body.homeId,
+        start: body.start,
+        end: body.end
+      }
     })
 
     sendJSON({ id: session.id }, res)
