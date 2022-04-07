@@ -1,10 +1,14 @@
 <template>
-  <div>
-    <div v-for="home in homes" :key="home.objectID">
-      <nuxt-link :to="`/home/${home.objectID}`" prefetch>
-        <home-card :home="home" />
-      </nuxt-link>
+  <div class="app">
+    <div class="app-container">
+      <div class="app-hero">
+        <h2>- Settle in somewhere new. Discover stays to live, work, or just relax.</h2>
+      </div>
     </div>
+
+    <section-premium-listings />
+    <section-recently-added class="app-background-grey" :homes="homes" />
+    <section-more />
   </div>
 </template>
 
@@ -16,7 +20,7 @@
         meta: [
           {
             name: 'description',
-            content: 'This is a homepage!',
+            content: 'NuxtBNB is an AirBNB app that uses Nuxt, Cloudinary, Stripe, Google Maps and Algolia. Learn more at MasteringNuxt.com',
             hid: 'description'
           }
         ]

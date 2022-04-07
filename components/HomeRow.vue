@@ -7,7 +7,6 @@
       :src="home.images[0]"
       :modifiers="{ effect: 'grayscale', opacity: 50 }" />
     <div class="app-house-body">
-      <img src="/images/icons/heart.svg" class="app-fav" alt="Favorites" />
       <h2>{{ home.title }}</h2>
       <div class="app-address">
         {{ home.location.address }}

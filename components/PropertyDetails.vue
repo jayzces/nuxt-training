@@ -68,8 +68,24 @@
     },
     methods: {
       checkout() {
+        if (!this.range.start || !this.range.end) {
+          alert('Please select a start and end date')
+          return
+        }
+
         const start = this.range.start.getTime() / 1000
         const end = this.range.end.getTime() / 1000
+
+        if (start > end){
+          alert('End date must be at on or after start date')
+          return
+        }
+
+        if (!this.$store.state.auth.isLoggedIn){
+          alert('You must sign in to book your stay')
+          return
+        }
+
         this.$stripe.checkout(this.home.objectID, start, end)
       },
       pluralize

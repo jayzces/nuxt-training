@@ -48,7 +48,7 @@ export default function ({ $config }, inject) {
     radiusInMeters = 1500 * 15
   ) {
     const days = []
-    for (let day = start; day <= end; day += 86400) {
+    for (let day = parseInt(start); day <= parseInt(end); day += 86400) {
       days.push(`availability:${day}`)
     }
 
