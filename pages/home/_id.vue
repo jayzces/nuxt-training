@@ -6,6 +6,7 @@
     <property-map :home="home" />
     <property-reviews :reviews="reviews" />
     <property-host :user="user" />
+    <script type="application/id+json" v-html="getSchema"></script>
   </div>
 </template>
 
@@ -64,6 +65,30 @@
         home: responses[0].json,
         reviews: responses[1].json.hits,
         user: responses[2].json.hits[0]
+      }
+    },
+    computed: {
+      getSchema() {
+        return JSON.stringify({
+          '@context': 'http://schema.org',
+          '@type': 'BedAndBreakfast',
+          'name': this.home.title,
+          'image': this.$img(this.home.images[0],
+            { width: 1200 },
+            { provider: 'cloudinary' }),
+          'address': {
+            '@type': 'PostalAddress',
+            'addressLocality': this.home.location.city,
+            'addressRegion': this.home.location.state,
+            'postalCode': this.home.location.postalCode,
+            'streetAddress': this.home.location.address,
+          },
+          'aggregateRating': {
+            '@type': 'AggregateRating',
+            'ratingValue': this.home.reviewValue,
+            'reviewCount': this.home.reviewCount
+          }
+        })
       }
     }
   }
