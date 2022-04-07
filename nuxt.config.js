@@ -1,4 +1,6 @@
 export default {
+  rootUrl: process.env.NODE_ENV === 'production'
+    ? 'https://nuxt-training.vercel.app/' : 'http://localhost:3000',
   build: {
     extractCSS: true,
     loaders: {
