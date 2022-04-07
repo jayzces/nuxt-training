@@ -12,6 +12,17 @@ export default algoliaConfig => {
       payload.homeId.push(homeId)
       this.create(identity, payload)
     },
+    bookHome: async (identityId, homeId, start, end) => {
+      try {
+        return unWrap(await fetch(`${baseUrl}/bookings`, {
+          headers,
+          method: 'POST',
+          body: JSON.stringify({ identityId, homeId, start, end })
+        }))
+      } catch (error) {
+        return getErrorResponse(error)
+      }
+    },
     create: async (identity, payload) => {
       try {
         return unWrap(await fetch(`${baseUrl}/users/${identity.id}`, {
