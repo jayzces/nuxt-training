@@ -6,7 +6,7 @@ export default function () {
   const apis = getApis(this.options.privateRuntimeConfig.algolia)
   const stripe = stripeLib(this.options.privateRuntimeConfig.stripe.secretKey)
   const baseImageUrl = this.options.image.cloudinary.baseURL
-  const rootUrl = this.options.rootUrl
+  const rootUrl = this.options.publicRuntimeConfig.rootUrl
 
   this.nuxt.hook('render:setupMiddleware', app => {
     app.use('/api/stripe/create-session', createSession)

@@ -1,6 +1,4 @@
 export default {
-  rootUrl: process.env.NODE_ENV === 'production'
-    ? 'https://nuxt-training.vercel.app/' : 'http://localhost:3000',
   build: {
     extractCSS: true,
     loaders: {
@@ -73,7 +71,9 @@ export default {
     },
     stripe: {
       key: process.env.STRIPE_PUBLIC_KEY
-    }
+    },
+    rootUrl: process.env.NODE_ENV === 'production'
+      ? 'https://nuxt-training.vercel.app/' : 'http://localhost:3000',
   },
   // for server-side rendering
   privateRuntimeConfig: {
