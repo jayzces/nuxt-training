@@ -20,10 +20,7 @@ export default function () {
     }
 
     const home = (await apis.homes.get(body.homeId)).json
-    const nights = (body.end - body.start) / 86400
-
-    console.log({ home, nights })
-
+    const nights = (body.end - body.start) / 86400 + 1
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'payment',
