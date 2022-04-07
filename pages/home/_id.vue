@@ -6,7 +6,7 @@
     <property-map :home="home" />
     <property-reviews :reviews="reviews" />
     <property-host :user="user" />
-    <script type="application/id+json" v-html="getSchema"></script>
+    <script type="application/ld+json" v-html="getSchema"></script>
   </div>
 </template>
 
